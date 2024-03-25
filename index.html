@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQuery UI Components</title>
+  <!-- jQuery and jQuery UI -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  <!-- jQuery Mobile CSS -->
+  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+  <!-- jQuery Mobile JS -->
+  <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" type="text/css" href="jQuery.css">
+  <!-- Custom Theme -->
+  <link rel="stylesheet" href="themes/mytheme.css">
+  <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css">
+</head>
+<body>
+
+<div class="container">
+  <div class="component">
+    <h3>Interactions</h3>
+    <div class="box" id="draggable">Drag me around</div>
+    <div class="droppable" id="droppable">Drop here</div>
+    <div class="resizable" id="resizable">Resize me</div>
+  </div>
+
+  <div class="component">
+    <h3>Widgets</h3>
+    <div id="accordion">
+      <h3>Section 1</h3>
+      <div>
+        <p>Content for section 1</p>
+      </div>
+      <h3>Section 2</h3>
+      <div>
+        <p>Content for section 2</p>
+      </div>
+      <h3>Section 3</h3>
+      <div>
+        <p>Content for section 3</p>
+      </div>
+      <h3>Section 4</h3>
+      <div>
+        <p>Content for section 4</p>
+      </div>
+      <h3>Section 5</h3>
+      <div>
+        <p>Content for section 5</p>
+      </div>
+    </div>
+    <input type="text" id="autocomplete" placeholder="Type a programming language">
+    <br><br>
+    <label for="datepicker">Select Date: </label>
+    <input type="text" id="datepicker">
+    <br><br>
+    <div id="slider"></div>
+  </div>
+
+  <div class="component">
+    <h3>Effects</h3>
+    <button id="showHide">Show/Hide</button>
+    <div id="explode" class="ui-widget-content">
+      <p>Click me to explode</p>
+    </div>
+    <div id="fadeInOut" class="ui-widget-content">
+      <p>Fade in/out</p>
+    </div>
+    <div id="colorAnimation" class="ui-widget-content">
+      <p>Color Animation</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function() {
+    // Draggable
+    $(".box").draggable();
+
+    // Droppable
+    $(".droppable").droppable({
+      drop: function(event, ui) {
+        $(this)
+          .addClass("ui-state-highlight")
+          .find("p")
+          .html("Dropped!");
+      }
+    });
+
+    // Resizable
+    $(".resizable").resizable();
+
+    // Widgets
+    $("#accordion").accordion();
+    var availableTags = [
+      "ActionScript", "AppleScript", "Asp", "BASIC", "C", "C++", "Clojure",
+      "COBOL", "ColdFusion", "Erlang", "Fortran", "Groovy", "Haskell", "Java",
+      "JavaScript", "Lisp", "Perl", "PHP", "Python", "Ruby", "Scala", "Scheme"
+    ];
+    $("#autocomplete").autocomplete({
+      source: availableTags
+    });
+    $("#datepicker").datepicker();
+    $("#slider").slider();
+
+    // Effects
+    $("#showHide").click(function() {
+      $("#explode").toggle("explode");
+    });
+    $("#explode").click(function() {
+      $(this).toggle("explode");
+    });
+    $("#fadeInOut").click(function() {
+      $(this).fadeToggle();
+    });
+    $("#colorAnimation").click(function() {
+      $(this).animate({
+        backgroundColor: "#aa0000",
+        color: "#fff",
+        width: 500
+      }, 1000);
+    });
+  });
+</script>
+
+</body>
+</html>
